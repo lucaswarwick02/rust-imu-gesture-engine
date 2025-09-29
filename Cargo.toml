@@ -20,3 +20,5 @@ usbd-serial = "0.2.2"
 [[bin]]
 name = "rust-imu-gesture-engine"
 path = "src/main.rs"
+test = false
+bench = false
