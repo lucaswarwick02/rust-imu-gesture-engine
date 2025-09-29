@@ -71,13 +71,15 @@ fn main() -> ! {
 
     loop {
         led.set_high().unwrap();  // LED on
-        for _ in 0..BLINK_DELAY {      // non-blocking delay
+        for _ in 0..BLINK_DELAY {
+            // Poll keeps the USB responsive
             usb_dev.poll(&mut [&mut serial]);
         }
         let _ = serial.write(b"LED on!\r\n");
 
         led.set_low().unwrap();   // LED off
-        for _ in 0..BLINK_DELAY {      // non-blocking delay
+        for _ in 0..BLINK_DELAY {
+            // Poll keeps the USB responsive
             usb_dev.poll(&mut [&mut serial]);
         }
         let _ = serial.write(b"LED off!\r\n");
